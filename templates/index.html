@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spelling Bee Coach 🐝 - Práctica de Deletreo en Inglés</title>
+    
+    <!-- Google Fonts for child-friendly typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    
+    <!-- Custom styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    
+    <!-- Canvas Confetti CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="logo-container">
+                <span class="logo-bee">🐝</span>
+                <h1>Spelling Bee Coach</h1>
+            </div>
+            <div class="status-badge" id="geminiStatus">
+                {% if gemini_enabled %}
+                    <span class="badge active">Gemini: Inteligente 🟢</span>
+                {% else %}
+                    <span class="badge basic">Gemini: Básico 🟡</span>
+                {% endif %}
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <main class="app-layout">
+            
+            <!-- Left Side: Parent Zone -->
+            <section class="panel-section parent-panel">
+                <div class="panel-header">
+                    <h2>⚙️ Zona de Padres</h2>
+                    <p class="panel-subtitle">Configura la lista de palabras del profesor.</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="wordListInput">Lista de palabras para practicar:</label>
+                    <textarea 
+                        id="wordListInput" 
+                        placeholder="Escribe o pega aquí las palabras separadas por comas o líneas (ej: beautiful, environment, science...)"
+                    ></textarea>
+                    <small class="helper-text">Las palabras se guardarán automáticamente en tu navegador para que no tengas que pegarlas la próxima vez.</small>
+                </div>
+
+                <div class="parent-actions">
+                    <button id="btnLoadWords" class="btn btn-primary btn-parent">
+                        🚀 Comenzar Práctica
+                    </button>
+                    <button id="btnResetWords" class="btn btn-secondary btn-parent">
+                        🧹 Restaurar Lista por Defecto
+                    </button>
+                </div>
+                
+                <!-- Practice Stats Summary -->
+                <div class="stats-summary">
+                    <h3>🏆 Progreso Guardado</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <span class="stat-number" id="statCompletedLists">0</span>
+                            <span class="stat-label">Listas Completadas</span>
+                        </div>
+                        <div class="stat-card">
+                            <span class="stat-number" id="statStarsCount">⭐ 0</span>
+                            <span class="stat-label">Estrellas Ganadas</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Side: Game/Spelling Zone -->
+            <section class="panel-section game-panel">
+                <!-- Welcome/Empty State -->
+                <div id="gameWelcomeState" class="game-state active">
+                    <div class="welcome-box">
+                        <span class="giant-bee">🐝</span>
+                        <h3>¡Hola! Deletreemos juntos</h3>
+                        <p>Haz clic en <strong>🚀 Comenzar Práctica</strong> en la Zona de Padres para empezar a jugar con tu lista de palabras.</p>
+                    </div>
+                </div>
+
+                <!-- Active spelling State -->
+                <div id="gamePlayState" class="game-state">
+                    <!-- Progress and stars -->
+                    <div class="game-hud">
+                        <div class="progress-indicator">
+                            <span>Palabra</span>
+                            <strong id="currentWordNum">1</strong>
+                            <span>de</span>
+                            <strong id="totalWordsNum">10</strong>
+                        </div>
+                        <div class="hud-stars">
+                            <span id="starRating">⭐⭐⭐</span>
+                        </div>
+                    </div>
+
+                    <!-- Main card -->
+                    <div class="spelling-card" id="spellingCard">
+                        <!-- Sound play button -->
+                        <div class="pronounce-container">
+                            <button id="btnPronounceWord" class="btn-voice-round" title="Escuchar Palabra">
+                                🔊
+                            </button>
+                            <span class="btn-caption">Haz clic para escuchar</span>
+                        </div>
+
+                        <!-- Word context hints (definition, sentence, translation) -->
+                        <div class="hints-accordion">
+                            <div class="hint-item" id="hintTranslationItem">
+                                <button class="hint-header" id="btnRevealTranslation">
+                                    <span>🔍 Traducción al Español</span>
+                                    <span class="chevron">▼</span>
+                                </button>
+                                <div class="hint-content" id="hintTranslationText">
+                                    Cargando...
+                                </div>
+                            </div>
+                            
+                            <div class="hint-item" id="hintDefinitionItem">
+                                <button class="hint-header" id="btnRevealDefinition">
+                                    <span>📖 Definición en Inglés</span>
+                                    <span class="chevron">▼</span>
+                                </button>
+                                <div class="hint-content" id="hintDefinitionText">
+                                    Cargando...
+                                </div>
+                            </div>
+
+                            <div class="hint-item" id="hintSentenceItem">
+                                <button class="hint-header" id="btnRevealSentence">
+                                    <span>📝 Oración de Ejemplo</span>
+                                    <span class="chevron">▼</span>
+                                </button>
+                                <div class="hint-content" id="hintSentenceText">
+                                    Cargando...
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Spelling input panel -->
+                        <div class="spelling-input-zone">
+                            <!-- Visual box showing spoken letters in real time -->
+                            <div class="feedback-input-box" id="feedbackInputBox">
+                                <div class="placeholder-text" id="feedbackPlaceholder">Escribe tu deletreo o usa el micrófono...</div>
+                                <div class="typed-letters-row" id="typedLettersRow"></div>
+                            </div>
+
+                            <!-- Manual text input -->
+                            <div class="input-text-container">
+                                <input 
+                                    type="text" 
+                                    id="manualSpellingInput" 
+                                    placeholder="Escribe la palabra completa o letra por letra..."
+                                    autocomplete="off"
+                                    autocorrect="off"
+                                    autocapitalize="off"
+                                    spellcheck="false"
+                                >
+                            </div>
+
+                            <!-- Microphone Trigger -->
+                            <div class="mic-container">
+                                <button id="btnMicInput" class="btn-mic" title="Presiona para deletrear hablando">
+                                    <span class="mic-icon">🎙️</span>
+                                    <span class="mic-status-label" id="micStatusText">Presiona para deletrear</span>
+                                </button>
+                                <p class="mic-hint">Di las letras en inglés una por una (ej: <em>c - a - t</em>) o di la palabra completa.</p>
+                            </div>
+                        </div>
+
+                        <!-- Action controls -->
+                        <div class="spelling-actions">
+                            <button id="btnSkipWord" class="btn btn-secondary">Saltar ➡️</button>
+                            <button id="btnCheckSpelling" class="btn btn-success">Validar 🎯</button>
+                        </div>
+                    </div>
+
+                    <!-- Bee Tutor Tip Box (hidden by default) -->
+                    <div class="tutor-box" id="tutorBox">
+                        <div class="tutor-avatar">
+                            <span class="tutor-emoji">🐝</span>
+                            <strong>Tutor Abeja:</strong>
+                        </div>
+                        <div class="tutor-content" id="tutorText">
+                            ¡Estás haciéndolo genial! Recuerda escuchar el sonido de las vocales en inglés.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Success / Completion State -->
+                <div id="gameFinishedState" class="game-state">
+                    <div class="finished-box">
+                        <span class="trophy-emoji">🏆</span>
+                        <h2>¡Lista Completada!</h2>
+                        <p>¡Gran trabajo! Has practicado todas las palabras con éxito.</p>
+                        
+                        <div class="finished-score">
+                            <div class="score-stars" id="finishedStars">⭐⭐⭐⭐⭐</div>
+                            <div class="score-detail" id="finishedScoreText">Aciertos: 8 de 10</div>
+                        </div>
+
+                        <button id="btnRestartPractice" class="btn btn-primary">
+                            🔄 Practicar de nuevo
+                        </button>
+                    </div>
+                </div>
+            </section>
+            
+        </main>
+        
+        <footer class="app-footer">
+            <p>Hecho con ❤️ para facilitar el aprendizaje de deletreo en inglés. Desarrollado con Python, Gemini y APIs web nativas.</p>
+        </footer>
+    </div>
+
+    <!-- Script loading -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

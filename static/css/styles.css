@@ -1,0 +1,808 @@
+/* --------------------------------------------------
+   SPELLING BEE COACH - DESIGN SYSTEM & CORE UTILITIES
+   -------------------------------------------------- */
+
+:root {
+    /* Color Palette */
+    --color-primary: #FFB300;     /* Amber Yellow */
+    --color-primary-dark: #FF8F00;
+    --color-primary-light: #FFE082;
+    --color-secondary: #795548;   /* Warm Hive Brown */
+    --color-bg-app: #F9F6F0;       /* Eggshell Cream */
+    --color-bg-card: #FFFFFF;
+    --color-text-dark: #2E2E3A;
+    --color-text-muted: #6B6B7C;
+    --color-success: #4CAF50;
+    --color-success-light: #E8F5E9;
+    --color-danger: #F44336;
+    --color-danger-light: #FFEBEE;
+    --color-accent-blue: #0288D1;
+    --color-border: #E6E1D6;
+
+    /* Fonts */
+    --font-heading: 'Fredoka', 'Quicksand', sans-serif;
+    --font-body: 'Quicksand', sans-serif;
+
+    /* Shadows & Transitions */
+    --shadow-soft: 0 8px 24px rgba(121, 85, 72, 0.06);
+    --shadow-medium: 0 12px 36px rgba(121, 85, 72, 0.12);
+    --shadow-hover: 0 16px 40px rgba(255, 179, 0, 0.2);
+    --radius-lg: 24px;
+    --radius-md: 16px;
+    --radius-sm: 8px;
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Reset & Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg-app);
+    color: var(--color-text-dark);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    line-height: 1.5;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Header Styles */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    border: 2px solid var(--color-border);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo-bee {
+    font-size: 2.2rem;
+    animation: hover-bee 3s ease-in-out infinite;
+    display: inline-block;
+}
+
+.app-header h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.8rem;
+    color: var(--color-secondary);
+}
+
+/* Badges */
+.status-badge .badge {
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    display: inline-block;
+}
+
+.badge.active {
+    background-color: var(--color-success-light);
+    color: #2E7D32;
+    border: 1.5px solid #A5D6A7;
+}
+
+.badge.basic {
+    background-color: #FFF3E0;
+    color: #E65100;
+    border: 1.5px solid #FFCC80;
+}
+
+/* Layout Columns */
+.app-layout {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 24px;
+}
+
+.panel-section {
+    background-color: var(--color-bg-card);
+    border-radius: var(--radius-lg);
+    border: 3px solid var(--color-border);
+    padding: 30px;
+    box-shadow: var(--shadow-soft);
+    transition: transform var(--transition-normal);
+}
+
+.panel-header {
+    margin-bottom: 25px;
+    border-bottom: 2px dashed var(--color-border);
+    padding-bottom: 15px;
+}
+
+.panel-header h2 {
+    font-family: var(--font-heading);
+    color: var(--color-secondary);
+    font-size: 1.5rem;
+}
+
+.panel-subtitle {
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+}
+
+/* Forms & Textarea */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-weight: 700;
+    color: var(--color-secondary);
+}
+
+textarea {
+    width: 100%;
+    height: 160px;
+    padding: 15px;
+    border-radius: var(--radius-md);
+    border: 2px solid var(--color-border);
+    font-family: inherit;
+    font-size: 1rem;
+    resize: none;
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 4px var(--color-primary-light);
+}
+
+.helper-text {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    line-height: 1.3;
+}
+
+/* Buttons */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: var(--radius-md);
+    border: none;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--color-primary);
+    color: var(--color-text-dark);
+    border-bottom: 4px solid var(--color-primary-dark);
+}
+
+.btn-primary:hover {
+    background-color: #FFC107;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-primary:active {
+    transform: translateY(1px);
+    border-bottom-width: 1px;
+}
+
+.btn-secondary {
+    background-color: #EEEEEE;
+    color: var(--color-text-muted);
+    border-bottom: 4px solid #CCCCCC;
+}
+
+.btn-secondary:hover {
+    background-color: #E0E0E0;
+    color: var(--color-text-dark);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background-color: var(--color-success);
+    color: white;
+    border-bottom: 4px solid #388E3C;
+}
+
+.btn-success:hover {
+    background-color: #43A047;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.btn-parent {
+    width: 100%;
+}
+
+.parent-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+}
+
+/* Stats Dashboard Card */
+.stats-summary {
+    background-color: #FAF8F5;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 20px;
+}
+
+.stats-summary h3 {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    margin-bottom: 12px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.stat-card {
+    background-color: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    padding: 12px;
+    border-radius: var(--radius-sm);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.stat-number {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-primary-dark);
+}
+
+.stat-label {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    font-weight: 700;
+}
+
+/* Game Panel / Active Practice Screen */
+.game-panel {
+    display: flex;
+    flex-direction: column;
+    min-height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.game-state {
+    display: none;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.game-state.active {
+    display: flex;
+}
+
+/* Welcome state */
+.welcome-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    text-align: center;
+    gap: 20px;
+    padding: 40px;
+}
+
+.giant-bee {
+    font-size: 5rem;
+    animation: hover-bee 3s ease-in-out infinite;
+}
+
+.welcome-box h3 {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--color-secondary);
+}
+
+.welcome-box p {
+    color: var(--color-text-muted);
+    font-size: 1.1rem;
+    max-width: 400px;
+}
+
+/* HUD elements */
+.game-hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: #FAF8F5;
+    padding: 12px 24px;
+    border-radius: 50px;
+    border: 2px solid var(--color-border);
+}
+
+.progress-indicator {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-secondary);
+    display: flex;
+    gap: 5px;
+}
+
+.progress-indicator strong {
+    color: var(--color-primary-dark);
+    font-family: var(--font-heading);
+}
+
+.hud-stars {
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* Card Spelling main area */
+.spelling-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25px;
+    flex-grow: 1;
+}
+
+/* Pronounce sound button */
+.pronounce-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 10px 0;
+}
+
+.btn-voice-round {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: var(--color-primary-light);
+    border: 3px solid var(--color-primary);
+    font-size: 2.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    box-shadow: 0 6px 16px rgba(255, 179, 0, 0.15);
+}
+
+.btn-voice-round:hover {
+    background-color: var(--color-primary);
+    transform: scale(1.08);
+    box-shadow: var(--shadow-hover);
+}
+
+.btn-voice-round:active {
+    transform: scale(0.95);
+}
+
+.btn-caption {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-weight: 700;
+}
+
+/* Hints Accordion */
+.hints-accordion {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.hint-item {
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    background-color: var(--color-bg-card);
+    transition: all var(--transition-fast);
+}
+
+.hint-header {
+    width: 100%;
+    padding: 14px 20px;
+    background-color: #FAF8F5;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--color-secondary);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color var(--transition-fast);
+}
+
+.hint-header:hover {
+    background-color: #F5EFEB;
+}
+
+.hint-content {
+    padding: 15px 20px;
+    border-top: 1.5px dashed var(--color-border);
+    font-size: 1rem;
+    line-height: 1.4;
+    color: var(--color-text-dark);
+    display: none; /* JS will toggle this */
+}
+
+.hint-content.active {
+    display: block;
+}
+
+.hint-header .chevron {
+    font-size: 0.8rem;
+    transition: transform var(--transition-fast);
+}
+
+.hint-item.expanded .chevron {
+    transform: rotate(180deg);
+}
+
+/* Spelling Input Zone */
+.spelling-input-zone {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Letters block display */
+.feedback-input-box {
+    width: 100%;
+    min-height: 60px;
+    border: 3px dashed var(--color-primary);
+    border-radius: var(--radius-md);
+    background-color: #FFFDE7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.placeholder-text {
+    color: var(--color-text-muted);
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+.placeholder-text.hidden {
+    display: none;
+}
+
+.typed-letters-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    justify-content: center;
+}
+
+.letter-bubble {
+    background-color: var(--color-primary);
+    color: var(--color-text-dark);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.6rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(255, 179, 0, 0.2);
+    border: 2px solid var(--color-primary-dark);
+    animation: pop-letter 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Text Input container */
+.input-text-container {
+    width: 100%;
+}
+
+#manualSpellingInput {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-align: center;
+    border-radius: var(--radius-md);
+    border: 3px solid var(--color-border);
+    outline: none;
+    letter-spacing: 2px;
+    font-family: var(--font-heading);
+    text-transform: lowercase;
+    transition: all var(--transition-fast);
+}
+
+#manualSpellingInput:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 5px var(--color-primary-light);
+}
+
+/* Microphone layout and effects */
+.mic-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-mic {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 50px;
+    background-color: #F3E5F5;
+    border: 2px solid #BA68C8;
+    color: #4A148C;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: all var(--transition-fast);
+}
+
+.btn-mic:hover {
+    background-color: #E1BEE7;
+    transform: scale(1.03);
+}
+
+.btn-mic.listening {
+    background-color: #E57373;
+    border-color: #D32F2F;
+    color: white;
+    animation: pulse-red 1.5s infinite;
+}
+
+.btn-mic.listening .mic-icon {
+    animation: shake-mic 0.5s infinite alternate;
+}
+
+.mic-hint {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.mic-hint em {
+    color: var(--color-primary-dark);
+    font-weight: 700;
+}
+
+/* Bottom Actions spacing */
+.spelling-actions {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.spelling-actions .btn {
+    flex: 1;
+}
+
+/* Tutor Box UI */
+.tutor-box {
+    margin-top: 30px;
+    background-color: #FFFDE7;
+    border: 2px solid #FFF59D;
+    border-radius: var(--radius-md);
+    padding: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    animation: fade-in-slide 0.4s ease-out;
+}
+
+.tutor-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    flex-shrink: 0;
+}
+
+.tutor-emoji {
+    font-size: 2rem;
+    animation: hover-bee 2.5s ease-in-out infinite;
+}
+
+.tutor-avatar strong {
+    font-size: 0.75rem;
+    color: var(--color-secondary);
+}
+
+.tutor-content {
+    font-size: 0.95rem;
+    color: #5D4037;
+    line-height: 1.4;
+}
+
+/* Completion state styling */
+.finished-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+    text-align: center;
+    gap: 24px;
+    padding: 40px;
+}
+
+.trophy-emoji {
+    font-size: 5rem;
+    animation: bounce-trophy 2s ease-in-out infinite;
+}
+
+.finished-box h2 {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    color: var(--color-secondary);
+}
+
+.finished-score {
+    background-color: #FFF9C4;
+    border: 2px solid #FFF176;
+    padding: 20px 40px;
+    border-radius: var(--radius-md);
+}
+
+.score-stars {
+    font-size: 1.8rem;
+    margin-bottom: 8px;
+    letter-spacing: 4px;
+}
+
+.score-detail {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--color-secondary);
+}
+
+/* Footer info */
+.app-footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    border-top: 1px solid var(--color-border);
+    margin-top: 10px;
+}
+
+/* CSS Keyframes & Animations */
+@keyframes hover-bee {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(5deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes pulse-red {
+    0% { box-shadow: 0 0 0 0 rgba(229, 115, 115, 0.6); }
+    70% { box-shadow: 0 0 0 12px rgba(229, 115, 115, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(229, 115, 115, 0); }
+}
+
+@keyframes shake-mic {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(5deg); }
+}
+
+@keyframes pop-letter {
+    0% { transform: scale(0.3); opacity: 0; }
+    80% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-in-slide {
+    0% { transform: translateY(15px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes bounce-trophy {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-12px) scale(1.05); }
+}
+
+/* Active card shaking animation (when child makes an error) */
+.shake-card {
+    animation: shake-error 0.5s ease-in-out;
+}
+
+@keyframes shake-error {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+
+/* --------------------------------------------------
+   RESPONSIVE LAYOUT (MEDIA QUERIES)
+   -------------------------------------------------- */
+@media (max-width: 900px) {
+    body {
+        padding: 10px;
+    }
+    
+    .app-layout {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .app-header {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+        padding: 15px;
+    }
+    
+    .panel-section {
+        padding: 20px;
+    }
+    
+    .btn-voice-round {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+    }
+    
+    #manualSpellingInput {
+        font-size: 1.2rem;
+    }
+    
+    .letter-bubble {
+        width: 38px;
+        height: 38px;
+        font-size: 1.3rem;
+    }
+}
