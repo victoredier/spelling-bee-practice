@@ -1,0 +1,562 @@
+{
+  "apple": {
+    "word": "apple",
+    "translation": "manzana",
+    "definition": "A round fruit with red, yellow, or green skin and crunchy white flesh inside.",
+    "sentence_blank": "I ate a crisp red _____ for my afternoon snack.",
+    "sentence_full": "I ate a crisp red apple for my afternoon snack."
+  },
+  "adventure": {
+    "word": "adventure",
+    "translation": "aventura",
+    "definition": "An exciting or unusual experience.",
+    "sentence_blank": "We went on a grand _____ in the forest.",
+    "sentence_full": "We went on a grand adventure in the forest."
+  },
+  "knowledge": {
+    "word": "knowledge",
+    "translation": "conocimiento",
+    "definition": "Information, skills, and understanding that you have learned.",
+    "sentence_blank": "Reading books helps you gain more _____.",
+    "sentence_full": "Reading books helps you gain more knowledge."
+  },
+  "comfortable": {
+    "word": "comfortable",
+    "translation": "cómodo",
+    "definition": "Feeling relaxed and physically at ease.",
+    "sentence_blank": "This chair is very _____ to sit in.",
+    "sentence_full": "This chair is very comfortable to sit in."
+  },
+  "dangerous": {
+    "word": "dangerous",
+    "translation": "peligroso",
+    "definition": "Likely to cause harm or injury.",
+    "sentence_blank": "It is _____ to play with fire.",
+    "sentence_full": "It is dangerous to play with fire."
+  },
+  "curious": {
+    "word": "curious",
+    "translation": "curioso",
+    "definition": "Wanting to learn or know more about something.",
+    "sentence_blank": "The _____ cat looked inside the box.",
+    "sentence_full": "The curious cat looked inside the box."
+  },
+  "incredible": {
+    "word": "incredible",
+    "translation": "increíble",
+    "definition": "Something that is hard to believe because it is so good or amazing.",
+    "sentence_blank": "The view from the mountain was _____.",
+    "sentence_full": "The view from the mountain was incredible."
+  },
+  "vocabulary": {
+    "word": "vocabulary",
+    "translation": "vocabulario",
+    "definition": "All the words that a person knows.",
+    "sentence_blank": "Learning new words helps grow your _____.",
+    "sentence_full": "Learning new words helps grow your vocabulary."
+  },
+  "friendship": {
+    "word": "friendship",
+    "translation": "amistad",
+    "definition": "The relationship between two people who like each other.",
+    "sentence_blank": "Their _____ has lasted for many years.",
+    "sentence_full": "Their friendship has lasted for many years."
+  },
+  "remember": {
+    "word": "remember",
+    "translation": "recordar",
+    "definition": "To bring back to your mind something you learned or saw before.",
+    "sentence_blank": "Please _____ to bring your homework tomorrow.",
+    "sentence_full": "Please remember to bring your homework tomorrow."
+  },
+  "excellent": {
+    "word": "excellent",
+    "translation": "excelente",
+    "definition": "Extremely good or of very high quality.",
+    "sentence_blank": "You did an _____ job on your project.",
+    "sentence_full": "You did an excellent job on your project."
+  },
+  "different": {
+    "word": "different",
+    "translation": "diferente",
+    "definition": "Not the same as another person or thing.",
+    "sentence_blank": "Every snowflake has a _____ shape.",
+    "sentence_full": "Every snowflake has a different shape."
+  },
+  "intelligent": {
+    "word": "intelligent",
+    "translation": "inteligente",
+    "definition": "Being able to learn and understand things quickly.",
+    "sentence_blank": "Dolphins are very _____ animals.",
+    "sentence_full": "Dolphins are very intelligent animals."
+  },
+  "environment": {
+    "word": "environment",
+    "translation": "medio ambiente",
+    "definition": "The natural world around us, like the air, water, and land.",
+    "sentence_blank": "We should work to protect our _____.",
+    "sentence_full": "We should work to protect our environment."
+  },
+  "imagination": {
+    "word": "imagination",
+    "translation": "imaginación",
+    "definition": "The ability to create new ideas or pictures in your mind.",
+    "sentence_blank": "Use your _____ to draw a magical creature.",
+    "sentence_full": "Use your imagination to draw a magical creature."
+  },
+  "celebration": {
+    "word": "celebration",
+    "translation": "celebración",
+    "definition": "A party or special event to honor something happy.",
+    "sentence_blank": "We had a big _____ for my birthday.",
+    "sentence_full": "We had a big celebration for my birthday."
+  },
+  "responsible": {
+    "word": "responsible",
+    "translation": "responsable",
+    "definition": "Being able to be trusted to do what is right.",
+    "sentence_blank": "It is _____ to finish your chores on time.",
+    "sentence_full": "It is responsible to finish your chores on time."
+  },
+  "photographer": {
+    "word": "photographer",
+    "translation": "fotógrafo",
+    "definition": "A person who takes pictures with a camera.",
+    "sentence_blank": "The _____ took a picture of the sunset.",
+    "sentence_full": "The photographer took a picture of the sunset."
+  },
+  "electricity": {
+    "word": "electricity",
+    "translation": "electricidad",
+    "definition": "A form of energy that powers lights and machines.",
+    "sentence_blank": "The _____ went out during the storm.",
+    "sentence_full": "The electricity went out during the storm."
+  },
+  "encyclopedia": {
+    "word": "encyclopedia",
+    "translation": "enciclopedia",
+    "definition": "A book or website that has facts about many different topics.",
+    "sentence_blank": "I looked up facts about space in the _____.",
+    "sentence_full": "I looked up facts about space in the encyclopedia."
+  },
+  "conversation": {
+    "word": "conversation",
+    "translation": "conversación",
+    "definition": "A talk between two or more people.",
+    "sentence_blank": "We had a nice _____ over lunch.",
+    "sentence_full": "We had a nice conversation over lunch."
+  },
+  "beautifully": {
+    "word": "beautifully",
+    "translation": "hermosamente",
+    "definition": "In a way that is very pleasing to look at or hear.",
+    "sentence_blank": "The choir sang _____ at the concert.",
+    "sentence_full": "The choir sang beautifully at the concert."
+  },
+  "carefully": {
+    "word": "carefully",
+    "translation": "cuidadosamente",
+    "definition": "Doing something with a lot of attention to avoid mistakes.",
+    "sentence_blank": "Please walk _____ on the icy sidewalk.",
+    "sentence_full": "Please walk carefully on the icy sidewalk."
+  },
+  "education": {
+    "word": "education",
+    "translation": "educación",
+    "definition": "The process of learning and gaining knowledge at school.",
+    "sentence_blank": "A good _____ is important for your future.",
+    "sentence_full": "A good education is important for your future."
+  },
+  "information": {
+    "word": "information",
+    "translation": "información",
+    "definition": "Facts or details about something.",
+    "sentence_blank": "The library has a lot of _____ about history.",
+    "sentence_full": "The library has a lot of information about history."
+  },
+  "delicious": {
+    "word": "delicious",
+    "translation": "delicioso",
+    "definition": "Having a very pleasant taste.",
+    "sentence_blank": "The cake my mom baked was _____.",
+    "sentence_full": "The cake my mom baked was delicious."
+  },
+  "important": {
+    "word": "important",
+    "translation": "importante",
+    "definition": "Something that has great value or meaning.",
+    "sentence_blank": "It is _____ to eat healthy food.",
+    "sentence_full": "It is important to eat healthy food."
+  },
+  "necessary": {
+    "word": "necessary",
+    "translation": "necesario",
+    "definition": "Something that is needed to get a job done.",
+    "sentence_blank": "Water is _____ for plants to grow.",
+    "sentence_full": "Water is necessary for plants to grow."
+  },
+  "surprised": {
+    "word": "surprised",
+    "translation": "sorprendido",
+    "definition": "Feeling shocked or amazed by something unexpected.",
+    "sentence_blank": "I was _____ when my friend visited me.",
+    "sentence_full": "I was surprised when my friend visited me."
+  },
+  "suddenly": {
+    "word": "suddenly",
+    "translation": "de repente",
+    "definition": "Happening very quickly and without warning.",
+    "sentence_blank": "_____ it started to rain outside.",
+    "sentence_full": "Suddenly it started to rain outside."
+  },
+  "tomorrow": {
+    "word": "tomorrow",
+    "translation": "mañana",
+    "definition": "The day after today.",
+    "sentence_blank": "We are going to the park _____.",
+    "sentence_full": "We are going to the park tomorrow."
+  },
+  "yesterday": {
+    "word": "yesterday",
+    "translation": "ayer",
+    "definition": "The day before today.",
+    "sentence_blank": "I finished my book _____.",
+    "sentence_full": "I finished my book yesterday."
+  },
+  "champion": {
+    "word": "champion",
+    "translation": "campeón",
+    "definition": "A person who wins a competition.",
+    "sentence_blank": "The team became the _____ after winning the game.",
+    "sentence_full": "The team became the champion after winning the game."
+  },
+  "scientist": {
+    "word": "scientist",
+    "translation": "científico",
+    "definition": "A person who studies the world through experiments and observation.",
+    "sentence_blank": "The _____ studied the stars through a telescope.",
+    "sentence_full": "The scientist studied the stars through a telescope."
+  },
+  "engineer": {
+    "word": "engineer",
+    "translation": "ingeniero",
+    "definition": "A person who designs and builds machines or structures.",
+    "sentence_blank": "The _____ designed a new type of bridge.",
+    "sentence_full": "The engineer designed a new type of bridge."
+  },
+  "discovery": {
+    "word": "discovery",
+    "translation": "descubrimiento",
+    "definition": "Finding something that was not known before.",
+    "sentence_blank": "The scientist made an amazing _____.",
+    "sentence_full": "The scientist made an amazing discovery."
+  },
+  "calendar": {
+    "word": "calendar",
+    "translation": "calendario",
+    "definition": "A chart that shows the days, weeks, and months of the year.",
+    "sentence_blank": "I marked my birthday on the _____.",
+    "sentence_full": "I marked my birthday on the calendar."
+  },
+  "geography": {
+    "word": "geography",
+    "translation": "geografía",
+    "definition": "The study of the Earth's land, water, and countries.",
+    "sentence_blank": "In _____ class, we learned about different continents.",
+    "sentence_full": "In geography class, we learned about different continents."
+  },
+  "language": {
+    "word": "language",
+    "translation": "idioma",
+    "definition": "A system of words used by people to communicate.",
+    "sentence_blank": "Spanish is a beautiful _____ to learn.",
+    "sentence_full": "Spanish is a beautiful language to learn."
+  },
+  "museum": {
+    "word": "museum",
+    "translation": "museo",
+    "definition": "A building where interesting objects are kept for people to see.",
+    "sentence_blank": "We saw dinosaur bones at the _____.",
+    "sentence_full": "We saw dinosaur bones at the museum."
+  },
+  "restaurant": {
+    "word": "restaurant",
+    "translation": "restaurante",
+    "definition": "A place where you can buy and eat a meal.",
+    "sentence_blank": "We went to a pizza _____ for dinner.",
+    "sentence_full": "We went to a pizza restaurant for dinner."
+  },
+  "universe": {
+    "word": "universe",
+    "translation": "universo",
+    "definition": "Everything that exists, including all stars and planets.",
+    "sentence_blank": "The _____ is so big that we cannot see the end of it.",
+    "sentence_full": "The universe is so big that we cannot see the end of it."
+  },
+  "butterfly": {
+    "word": "butterfly",
+    "translation": "mariposa",
+    "definition": "An insect with large, colorful wings.",
+    "sentence_blank": "The _____ landed on the flower.",
+    "sentence_full": "The butterfly landed on the flower."
+  },
+  "basketball": {
+    "word": "basketball",
+    "translation": "baloncesto",
+    "definition": "A game played with a ball and a hoop.",
+    "sentence_blank": "I love playing _____ with my friends.",
+    "sentence_full": "I love playing basketball with my friends."
+  },
+  "chocolate": {
+    "word": "chocolate",
+    "translation": "chocolate",
+    "definition": "A sweet food made from cocoa beans.",
+    "sentence_blank": "I had a piece of _____ for dessert.",
+    "sentence_full": "I had a piece of chocolate for dessert."
+  },
+  "collection": {
+    "word": "collection",
+    "translation": "colección",
+    "definition": "A group of similar things kept together.",
+    "sentence_blank": "He has a large _____ of stamps.",
+    "sentence_full": "He has a large collection of stamps."
+  },
+  "direction": {
+    "word": "direction",
+    "translation": "dirección",
+    "definition": "The path or way something is moving.",
+    "sentence_blank": "Which _____ should we go to find the park?",
+    "sentence_full": "Which direction should we go to find the park?"
+  },
+  "excitement": {
+    "word": "excitement",
+    "translation": "emoción",
+    "definition": "A feeling of being very happy and eager.",
+    "sentence_blank": "There was a lot of _____ before the school trip.",
+    "sentence_full": "There was a lot of excitement before the school trip."
+  },
+  "fantastic": {
+    "word": "fantastic",
+    "translation": "fantástico",
+    "definition": "Very good or wonderful.",
+    "sentence_blank": "You did a _____ job on your drawing.",
+    "sentence_full": "You did a fantastic job on your drawing."
+  },
+  "generation": {
+    "word": "generation",
+    "translation": "generación",
+    "definition": "All the people born and living at about the same time.",
+    "sentence_blank": "My grandparents belong to a different _____ than me.",
+    "sentence_full": "My grandparents belong to a different generation than me."
+  },
+  "happiness": {
+    "word": "happiness",
+    "translation": "felicidad",
+    "definition": "The feeling of being happy.",
+    "sentence_blank": "Seeing my friends brought me so much _____.",
+    "sentence_full": "Seeing my friends brought me so much happiness."
+  },
+  "instrument": {
+    "word": "instrument",
+    "translation": "instrumento",
+    "definition": "A tool used to make music.",
+    "sentence_blank": "The piano is my favorite musical _____.",
+    "sentence_full": "The piano is my favorite musical instrument."
+  },
+  "journalist": {
+    "word": "journalist",
+    "translation": "periodista",
+    "definition": "A person who writes news stories for newspapers or TV.",
+    "sentence_blank": "The _____ interviewed the mayor for the news.",
+    "sentence_full": "The journalist interviewed the mayor for the news."
+  },
+  "kangaroo": {
+    "word": "kangaroo",
+    "translation": "canguro",
+    "definition": "An animal from Australia that jumps on its back legs.",
+    "sentence_blank": "The _____ carried its baby in a pouch.",
+    "sentence_full": "The kangaroo carried its baby in a pouch."
+  },
+  "lightning": {
+    "word": "lightning",
+    "translation": "relámpago",
+    "definition": "A flash of light in the sky during a storm.",
+    "sentence_blank": "We saw a bright flash of _____ during the storm.",
+    "sentence_full": "We saw a bright flash of lightning during the storm."
+  },
+  "mysterious": {
+    "word": "mysterious",
+    "translation": "misterioso",
+    "definition": "Something that is hard to explain or understand.",
+    "sentence_blank": "We heard a _____ noise in the attic.",
+    "sentence_full": "We heard a mysterious noise in the attic."
+  },
+  "neighborhood": {
+    "word": "neighborhood",
+    "translation": "vecindario",
+    "definition": "The area where you live and the people who live nearby.",
+    "sentence_blank": "There are many children in our _____.",
+    "sentence_full": "There are many children in our neighborhood."
+  },
+  "opportunity": {
+    "word": "opportunity",
+    "translation": "oportunidad",
+    "definition": "A good chance to do something.",
+    "sentence_blank": "This is a great _____ to learn something new.",
+    "sentence_full": "This is a great opportunity to learn something new."
+  },
+  "passenger": {
+    "word": "passenger",
+    "translation": "pasajero",
+    "definition": "A person who is traveling in a vehicle but not driving.",
+    "sentence_blank": "The _____ looked out the window of the train.",
+    "sentence_full": "The passenger looked out the window of the train."
+  },
+  "questionnaire": {
+    "word": "questionnaire",
+    "translation": "cuestionario",
+    "definition": "A list of questions used to gather information.",
+    "sentence_blank": "We filled out a _____ about our favorite foods.",
+    "sentence_full": "We filled out a questionnaire about our favorite foods."
+  },
+  "refrigerator": {
+    "word": "refrigerator",
+    "translation": "refrigerador",
+    "definition": "A machine that keeps food cold.",
+    "sentence_blank": "Please put the milk back in the _____.",
+    "sentence_full": "Please put the milk back in the refrigerator."
+  },
+  "strawberry": {
+    "word": "strawberry",
+    "translation": "fresa",
+    "definition": "A small, red, sweet fruit.",
+    "sentence_blank": "I love eating a fresh _____ in the summer.",
+    "sentence_full": "I love eating a fresh strawberry in the summer."
+  },
+  "temperature": {
+    "word": "temperature",
+    "translation": "temperatura",
+    "definition": "A measure of how hot or cold something is.",
+    "sentence_blank": "The _____ outside is very cold today.",
+    "sentence_full": "The temperature outside is very cold today."
+  },
+  "umbrella": {
+    "word": "umbrella",
+    "translation": "paraguas",
+    "definition": "An object used to keep you dry in the rain.",
+    "sentence_blank": "Don't forget your _____ when you go outside.",
+    "sentence_full": "Don't forget your umbrella when you go outside."
+  },
+  "vegetarian": {
+    "word": "vegetarian",
+    "translation": "vegetariano",
+    "definition": "A person who does not eat meat.",
+    "sentence_blank": "My friend is a _____ so she eats lots of vegetables.",
+    "sentence_full": "My friend is a vegetarian so she eats lots of vegetables."
+  },
+  "watermelon": {
+    "word": "watermelon",
+    "translation": "sandía",
+    "definition": "A large, sweet fruit with a green skin and red inside.",
+    "sentence_blank": "We ate a juicy _____ at the picnic.",
+    "sentence_full": "We ate a juicy watermelon at the picnic."
+  },
+  "xylophone": {
+    "word": "xylophone",
+    "translation": "xilófono",
+    "definition": "A musical instrument with wooden bars that you hit with mallets.",
+    "sentence_blank": "I played a happy tune on the _____.",
+    "sentence_full": "I played a happy tune on the xylophone."
+  },
+  "youthful": {
+    "word": "youthful",
+    "translation": "juvenil",
+    "definition": "Having the energy or look of a young person.",
+    "sentence_blank": "She has a very _____ spirit even though she is old.",
+    "sentence_full": "She has a very youthful spirit even though she is old."
+  },
+  "zoologist": {
+    "word": "zoologist",
+    "translation": "zoólogo",
+    "definition": "A scientist who studies animals.",
+    "sentence_blank": "The _____ observed the lions in the wild.",
+    "sentence_full": "The zoologist observed the lions in the wild."
+  },
+  "communication": {
+    "word": "communication",
+    "translation": "comunicación",
+    "definition": "The act of sharing information or feelings.",
+    "sentence_blank": "Good _____ is important for working in a team.",
+    "sentence_full": "Good communication is important for working in a team."
+  },
+  "motivation": {
+    "word": "motivation",
+    "translation": "motivación",
+    "definition": "The reason why you want to do something.",
+    "sentence_blank": "His _____ for studying is to become a doctor.",
+    "sentence_full": "His motivation for studying is to become a doctor."
+  },
+  "nutrition": {
+    "word": "nutrition",
+    "translation": "nutrición",
+    "definition": "The process of getting the right food for health.",
+    "sentence_blank": "Good _____ helps you grow strong.",
+    "sentence_full": "Good nutrition helps you grow strong."
+  },
+  "observation": {
+    "word": "observation",
+    "translation": "observación",
+    "definition": "The act of watching something carefully.",
+    "sentence_blank": "My _____ was that the plant grew faster in the sun.",
+    "sentence_full": "My observation was that the plant grew faster in the sun."
+  },
+  "population": {
+    "word": "population",
+    "translation": "población",
+    "definition": "The number of people living in a place.",
+    "sentence_blank": "The _____ of the city is growing every year.",
+    "sentence_full": "The population of the city is growing every year."
+  },
+  "revolution": {
+    "word": "revolution",
+    "translation": "revolución",
+    "definition": "A big change in the way things are done.",
+    "sentence_blank": "The invention of the computer caused a _____ in how we work.",
+    "sentence_full": "The invention of the computer caused a revolution in how we work."
+  },
+  "scholarship": {
+    "word": "scholarship",
+    "translation": "beca",
+    "definition": "Money given to a student to help pay for school.",
+    "sentence_blank": "She won a _____ because she is a great student.",
+    "sentence_full": "She won a scholarship because she is a great student."
+  },
+  "transformation": {
+    "word": "transformation",
+    "translation": "transformación",
+    "definition": "A complete change in appearance or character.",
+    "sentence_blank": "The caterpillar's _____ into a butterfly is amazing.",
+    "sentence_full": "The caterpillar's transformation into a butterfly is amazing."
+  },
+  "understanding": {
+    "word": "understanding",
+    "translation": "comprensión",
+    "definition": "Knowing how something works or how someone feels.",
+    "sentence_blank": "She has a deep _____ of how math works.",
+    "sentence_full": "She has a deep understanding of how math works."
+  },
+  "visualization": {
+    "word": "visualization",
+    "translation": "visualización",
+    "definition": "Creating a picture in your mind.",
+    "sentence_blank": "_____ helps me remember the story better.",
+    "sentence_full": "Visualization helps me remember the story better."
+  },
+  "wilderness": {
+    "word": "wilderness",
+    "translation": "naturaleza salvaje",
+    "definition": "A wild area where few people live.",
+    "sentence_blank": "We went hiking in the deep _____.",
+    "sentence_full": "We went hiking in the deep wilderness."
+  }
+}

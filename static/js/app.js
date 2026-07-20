@@ -3,7 +3,7 @@
 // --------------------------------------------------
 
 // Default spelling list for 10-year-old
-const DEFAULT_WORD_LIST = "beautiful, science, environment, language, experience, library, knowledge, sequence, giraffe, dolphin, balance, challenge, character, special, separate";
+const DEFAULT_WORD_LIST = "Adventure, Knowledge, Comfortable, Dangerous, Curious, Incredible, Vocabulary, Friendship, Remember, Excellent, Different, Intelligent, Environment, Imagination, Celebration, Responsible, Photographer, Electricity, Encyclopedia, Conversation, Beautifully, Carefully, Education, Information, Delicious, Important, Necessary, Surprised, Suddenly, Tomorrow, Yesterday, Champion, Scientist, Engineer, Discovery, Adventure, Calendar, Geography, Language, Museum, Restaurant, Universe, Butterfly, Basketball, Chocolate, Collection, Direction, Excitement, Fantastic, Generation, Happiness, Instrument, Journalist, Kangaroo, Lightning, Mysterious, Neighborhood, Opportunity, Passenger, Questionnaire, Refrigerator, Strawberry, Temperature, Umbrella, Vegetarian, Watermelon, Xylophone, Youthful, Zoologist, Communication, Motivation, Nutrition, Observation, Population, Questionnaire, Revolution, Scholarship, Transformation, Understanding, Visualization, Wilderness";
 
 // App State
 let state = {
@@ -25,33 +25,33 @@ const els = {
     btnResetWords: document.getElementById('btnResetWords'),
     statCompletedLists: document.getElementById('statCompletedLists'),
     statStarsCount: document.getElementById('statStarsCount'),
-    
+
     // States panels
     gameWelcomeState: document.getElementById('gameWelcomeState'),
     gamePlayState: document.getElementById('gamePlayState'),
     gameFinishedState: document.getElementById('gameFinishedState'),
-    
+
     // HUD
     currentWordNum: document.getElementById('currentWordNum'),
     totalWordsNum: document.getElementById('totalWordsNum'),
     starRating: document.getElementById('starRating'),
-    
+
     // Card & Hints
     spellingCard: document.getElementById('spellingCard'),
     btnPronounceWord: document.getElementById('btnPronounceWord'),
-    
+
     btnRevealTranslation: document.getElementById('btnRevealTranslation'),
     hintTranslationText: document.getElementById('hintTranslationText'),
     hintTranslationItem: document.getElementById('hintTranslationItem'),
-    
+
     btnRevealDefinition: document.getElementById('btnRevealDefinition'),
     hintDefinitionText: document.getElementById('hintDefinitionText'),
     hintDefinitionItem: document.getElementById('hintDefinitionItem'),
-    
+
     btnRevealSentence: document.getElementById('btnRevealSentence'),
     hintSentenceText: document.getElementById('hintSentenceText'),
     hintSentenceItem: document.getElementById('hintSentenceItem'),
-    
+
     // Inputs
     feedbackInputBox: document.getElementById('feedbackInputBox'),
     feedbackPlaceholder: document.getElementById('feedbackPlaceholder'),
@@ -59,15 +59,15 @@ const els = {
     manualSpellingInput: document.getElementById('manualSpellingInput'),
     btnMicInput: document.getElementById('btnMicInput'),
     micStatusText: document.getElementById('micStatusText'),
-    
+
     // Actions
     btnSkipWord: document.getElementById('btnSkipWord'),
     btnCheckSpelling: document.getElementById('btnCheckSpelling'),
-    
+
     // Tutor
     tutorBox: document.getElementById('tutorBox'),
     tutorText: document.getElementById('tutorText'),
-    
+
     // Finished state
     finishedStars: document.getElementById('finishedStars'),
     finishedScoreText: document.getElementById('finishedScoreText'),
@@ -113,14 +113,14 @@ function playSound(type) {
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
-    
+
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();
     osc.connect(gain);
     gain.connect(audioCtx.destination);
-    
+
     const now = audioCtx.currentTime;
-    
+
     if (type === 'correct') {
         // Upbeat chime "ding-ding!"
         osc.type = 'sine';
@@ -129,7 +129,7 @@ function playSound(type) {
         gain.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
         osc.start(now);
         osc.stop(now + 0.15);
-        
+
         // Second note
         setTimeout(() => {
             const osc2 = audioCtx.createOscillator();
@@ -143,7 +143,7 @@ function playSound(type) {
             osc2.start(now + 0.12);
             osc2.stop(now + 0.35);
         }, 120);
-        
+
     } else if (type === 'incorrect') {
         // Low frequency "buzz/boing"
         osc.type = 'sawtooth';
@@ -161,32 +161,32 @@ function playSound(type) {
 // --------------------------------------------------
 function speak(text, rate = 0.9) {
     if (!text) return;
-    
+
     // Stop any ongoing speech
     window.speechSynthesis.cancel();
-    
+
     const utterance = new SpeechSynthesisUtterance(text);
-    
+
     // Search for an English voice
     const voices = window.speechSynthesis.getVoices();
     let englishVoice = voices.find(voice => voice.lang.startsWith('en-US'));
     if (!englishVoice) {
         englishVoice = voices.find(voice => voice.lang.startsWith('en'));
     }
-    
+
     if (englishVoice) {
         utterance.voice = englishVoice;
     }
-    
+
     utterance.lang = 'en-US';
     utterance.rate = rate; // slightly slower for clarity
-    
+
     window.speechSynthesis.speak(utterance);
 }
 
 // Ensure voices are loaded (Chrome lazy-loads them)
 if (window.speechSynthesis.onvoiceschanged !== undefined) {
-    window.speechSynthesis.onvoiceschanged = () => speak(''); 
+    window.speechSynthesis.onvoiceschanged = () => speak('');
 }
 
 // --------------------------------------------------
@@ -203,18 +203,18 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
     recognition.lang = 'en-US';
     recognition.interimResults = false;
     recognition.maxAlternatives = 1;
-    
+
     recognition.onstart = () => {
         isListening = true;
         hasSpeechError = false;
         els.btnMicInput.classList.add('listening');
         els.micStatusText.textContent = "Escuchando... ¡Deletrea!";
     };
-    
+
     recognition.onend = () => {
         isListening = false;
         els.btnMicInput.classList.remove('listening');
-        
+
         // Reset to default button text ONLY if there was no error
         if (!hasSpeechError) {
             els.micStatusText.textContent = "Presiona para deletrear";
@@ -228,13 +228,13 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
             }, 5000);
         }
     };
-    
+
     recognition.onerror = (event) => {
         console.error("Speech recognition error:", event.error);
         hasSpeechError = true;
-        
+
         let errorMsg = "⚠️ Error al escuchar. Reintenta.";
-        
+
         if (event.error === 'not-allowed') {
             // Check if context is insecure HTTP on non-localhost
             if (window.location.protocol !== 'https:' && window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
@@ -252,10 +252,10 @@ if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
         } else if (event.error === 'audio-capture') {
             errorMsg = "⚠️ No se encontró micrófono.";
         }
-        
+
         els.micStatusText.textContent = errorMsg;
     };
-    
+
     recognition.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         console.log("Raw Voice transcript:", transcript);
@@ -273,13 +273,13 @@ function processVoiceSpelling(transcript) {
     // 1. Remove commas, dashes, periods
     const cleanTranscript = transcript.toLowerCase().replace(/[-.,]/g, ' ').trim();
     const spokenTokens = cleanTranscript.split(/\s+/);
-    
+
     let spelledWord = "";
-    
+
     // If the transcript is just a single word and matches the target word length roughly,
     // they might have pronounced the whole word instead of spelling it.
     // However, if they spelled it, spokenTokens will contain multiple isolated letters or letters translated to words (e.g. "c a t" or "see a tea")
-    
+
     if (spokenTokens.length === 1) {
         // Child spoke a single full word
         spelledWord = spokenTokens[0];
@@ -297,10 +297,10 @@ function processVoiceSpelling(transcript) {
             }
         }
     }
-    
+
     // Clean spaces from spelledWord
     spelledWord = spelledWord.replace(/\s+/g, '');
-    
+
     // Update input boxes
     els.manualSpellingInput.value = spelledWord;
     updateVisualLetterBubbles(spelledWord);
@@ -309,10 +309,10 @@ function processVoiceSpelling(transcript) {
 // Update the bubble letter layout in real time
 function updateVisualLetterBubbles(wordText) {
     els.typedLettersRow.innerHTML = '';
-    
+
     if (wordText.length > 0) {
         els.feedbackPlaceholder.classList.add('hidden');
-        
+
         for (const char of wordText) {
             const bubble = document.createElement('span');
             bubble.className = 'letter-bubble';
@@ -330,7 +330,7 @@ function updateVisualLetterBubbles(wordText) {
 function setupAccordion(headerEl, contentEl, itemEl) {
     headerEl.addEventListener('click', () => {
         const isCurrentlyActive = contentEl.classList.contains('active');
-        
+
         // Toggle active
         if (isCurrentlyActive) {
             contentEl.classList.remove('active');
@@ -338,7 +338,7 @@ function setupAccordion(headerEl, contentEl, itemEl) {
         } else {
             contentEl.classList.add('active');
             itemEl.classList.add('expanded');
-            
+
             // If revealing sentence, speak the sentence aloud (for auditory reinforcement)
             if (contentEl.id === 'hintSentenceText') {
                 const activeWord = state.words[state.currentIndex];
@@ -359,11 +359,11 @@ function setupAccordion(headerEl, contentEl, itemEl) {
 function startPractice() {
     state.currentIndex = 0;
     state.score = 0;
-    
+
     els.gameWelcomeState.classList.remove('active');
     els.gameFinishedState.classList.remove('active');
     els.gamePlayState.classList.add('active');
-    
+
     loadWord(0);
 }
 
@@ -373,28 +373,28 @@ function loadWord(index) {
         finishPractice();
         return;
     }
-    
+
     state.currentIndex = index;
     state.attempts = 0;
     state.correctOnCurrentWord = false;
-    
+
     const wordObj = state.words[index];
-    
+
     // Update HUD
     els.currentWordNum.textContent = index + 1;
     els.totalWordsNum.textContent = state.words.length;
     els.starRating.textContent = "⭐".repeat(Math.max(1, 5 - state.attempts));
-    
+
     // Reset inputs
     els.manualSpellingInput.value = "";
     els.manualSpellingInput.disabled = false;
     updateVisualLetterBubbles("");
-    
+
     // Reset hints & collapse accordion
     els.hintTranslationText.textContent = wordObj.translation || "No disponible (deletrea la palabra directamente).";
     els.hintDefinitionText.textContent = wordObj.definition || "Definition not available.";
     els.hintSentenceText.textContent = wordObj.sentence_blank || `Sentence: Spell the word '${wordObj.word}'`;
-    
+
     // Hide active tabs
     els.hintTranslationText.classList.remove('active');
     els.hintTranslationItem.classList.remove('expanded');
@@ -402,10 +402,10 @@ function loadWord(index) {
     els.hintDefinitionItem.classList.remove('expanded');
     els.hintSentenceText.classList.remove('active');
     els.hintSentenceItem.classList.remove('expanded');
-    
+
     // Hide tutor
     els.tutorBox.style.display = 'none';
-    
+
     // Pronounce the word
     setTimeout(() => {
         pronounceActiveWord();
@@ -422,18 +422,18 @@ function pronounceActiveWord() {
 // Validate Spelled Word
 function checkSpelling() {
     if (state.correctOnCurrentWord) return; // already solved
-    
+
     const wordObj = state.words[state.currentIndex];
     if (!wordObj) return;
-    
+
     const childSpelling = els.manualSpellingInput.value.trim().toLowerCase();
     const correctSpelling = wordObj.word.trim().toLowerCase();
-    
+
     if (!childSpelling) {
         alert("¡Escribe o deletrea algo antes de validar!");
         return;
     }
-    
+
     if (childSpelling === correctSpelling) {
         // SUCCESS!
         state.correctOnCurrentWord = true;
@@ -443,7 +443,7 @@ function checkSpelling() {
             spread: 60,
             origin: { y: 0.6 }
         });
-        
+
         // Add to score if correct on first attempt
         if (state.attempts === 0) {
             state.score++;
@@ -454,42 +454,42 @@ function checkSpelling() {
             state.stats.starsCount += Math.max(1, 5 - state.attempts);
         }
         saveStats();
-        
+
         // Visual indicator on input
         els.manualSpellingInput.style.borderColor = 'var(--color-success)';
         els.manualSpellingInput.disabled = true;
-        
+
         // Display nice tutor message
         els.tutorBox.style.display = 'flex';
         els.tutorBox.style.borderColor = '#C8E6C9';
         els.tutorBox.style.backgroundColor = '#E8F5E9';
         els.tutorText.innerHTML = `🌟 <strong>¡Excelente!</strong> Deletreaste correctamente <strong>"${wordObj.word}"</strong>.`;
-        
+
         // Delay and load next word
         setTimeout(() => {
             loadWord(state.currentIndex + 1);
         }, 2000);
-        
+
     } else {
         // ERROR!
         state.attempts++;
         playSound('incorrect');
-        
+
         // Shake animation
         els.spellingCard.classList.add('shake-card');
         setTimeout(() => {
             els.spellingCard.classList.remove('shake-card');
         }, 500);
-        
+
         // Visual indicator on input
         els.manualSpellingInput.style.borderColor = 'var(--color-danger)';
         setTimeout(() => {
             els.manualSpellingInput.style.borderColor = 'var(--color-border)';
         }, 1500);
-        
+
         // Update Stars HUD
         els.starRating.textContent = "⭐".repeat(Math.max(1, 5 - state.attempts));
-        
+
         // If they failed 2 times, fetch tutoring explanation from Gemini
         if (state.attempts >= 2) {
             fetchSpellingExplanation(wordObj.word, childSpelling);
@@ -509,14 +509,14 @@ async function fetchSpellingExplanation(word, attempt) {
     els.tutorBox.style.borderColor = '#FFF59D';
     els.tutorBox.style.backgroundColor = '#FFFDE7';
     els.tutorText.textContent = "La abeja tutora está pensando un consejo...";
-    
+
     try {
         const response = await fetch('/api/explain-word', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ word: word, attempt: attempt })
         });
-        
+
         if (response.ok) {
             const result = await response.json();
             els.tutorText.innerHTML = `💡 ${result.explanation}`;
@@ -537,37 +537,37 @@ function skipWord() {
 function finishPractice() {
     els.gamePlayState.classList.remove('active');
     els.gameFinishedState.classList.add('active');
-    
+
     // Complete list stats
     state.stats.completedLists++;
     saveStats();
-    
+
     // Render finished screen
     els.finishedScoreText.textContent = `Aciertos en el primer intento: ${state.score} de ${state.words.length}`;
-    
+
     // Confetti shower
     const duration = 2.5 * 1000;
     const end = Date.now() + duration;
 
     (function frame() {
-      confetti({
-        particleCount: 5,
-        angle: 60,
-        spread: 55,
-        origin: { x: 0 }
-      });
-      confetti({
-        particleCount: 5,
-        angle: 120,
-        spread: 55,
-        origin: { x: 1 }
-      });
+        confetti({
+            particleCount: 5,
+            angle: 60,
+            spread: 55,
+            origin: { x: 0 }
+        });
+        confetti({
+            particleCount: 5,
+            angle: 120,
+            spread: 55,
+            origin: { x: 1 }
+        });
 
-      if (Date.now() < end) {
-        requestAnimationFrame(frame);
-      }
+        if (Date.now() < end) {
+            requestAnimationFrame(frame);
+        }
     }());
-    
+
     // Update star rating in success screen
     let starSymbol = "⭐";
     const percentage = state.score / state.words.length;
@@ -575,7 +575,7 @@ function finishPractice() {
     else if (percentage >= 0.7) starSymbol = "⭐⭐⭐⭐";
     else if (percentage >= 0.5) starSymbol = "⭐⭐⭐";
     else if (percentage >= 0.3) starSymbol = "⭐⭐";
-    
+
     els.finishedStars.textContent = starSymbol;
 }
 
@@ -589,9 +589,9 @@ function loadStats() {
             state.stats = JSON.parse(local);
             if (!state.stats.completedLists) state.stats.completedLists = 0;
             if (!state.stats.starsCount) state.stats.starsCount = 0;
-        } catch(e) {}
+        } catch (e) { }
     }
-    
+
     els.statCompletedLists.textContent = state.stats.completedLists;
     els.statStarsCount.textContent = `⭐ ${state.stats.starsCount}`;
 }
@@ -620,36 +620,111 @@ async function loadAndEnrichWords() {
         .split(/[,\n]/)
         .map(w => w.replace(/[^a-zA-Z]/g, '').trim()) // letters only
         .filter(w => w.length > 0);
-        
+
     if (parsedWords.length === 0) {
         alert("Escribe al menos una palabra para practicar.");
         return;
     }
-    
+
     // Save raw text list
     localStorage.setItem('spelling_custom_words', rawInput);
-    
+
     els.btnLoadWords.disabled = true;
     els.btnLoadWords.textContent = "⏳ Cargando pistas...";
-    
+
+    // 1. Read cache from localStorage
+    let cache = {};
+    const cachedData = localStorage.getItem('spelling_word_cache');
+    if (cachedData) {
+        try {
+            cache = JSON.parse(cachedData);
+        } catch (e) { }
+    }
+
+    const wordsToFetch = [];
+    const enrichedWordsList = [];
+
+    // 2. Identify cached vs non-cached words
+    for (const word of parsedWords) {
+        const cleanedWord = word.toLowerCase();
+        if (cache[cleanedWord] && cache[cleanedWord].translation) {
+            // Ensure it has a valid translation (meaning it was fully enriched by Gemini)
+            enrichedWordsList.push(cache[cleanedWord]);
+        } else {
+            wordsToFetch.push(cleanedWord);
+        }
+    }
+
+    // 3. If everything is cached, start immediately!
+    if (wordsToFetch.length === 0) {
+        console.log("All words loaded from browser localStorage cache.");
+
+        // Re-sort to match original input order
+        const orderedList = [];
+        for (const word of parsedWords) {
+            const cleanedWord = word.toLowerCase();
+            const matched = enrichedWordsList.find(w => w.word.toLowerCase() === cleanedWord);
+            if (matched) orderedList.push(matched);
+        }
+
+        state.words = orderedList;
+        startPractice();
+        els.btnLoadWords.disabled = false;
+        els.btnLoadWords.textContent = "🚀 Comenzar Práctica";
+        return;
+    }
+
     try {
+        console.log("Fetching new words from backend:", wordsToFetch);
         const response = await fetch('/api/enrich-words', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ words: parsedWords })
+            body: JSON.stringify({ words: wordsToFetch })
         });
-        
+
         if (response.ok) {
             const data = await response.json();
-            state.words = data.words || [];
+            const newEnrichedWords = data.words || [];
+
+            // Save newly fetched words into our browser cache
+            for (const enrichedObj of newEnrichedWords) {
+                const cleanedWord = enrichedObj.word.toLowerCase();
+                // Store only if successfully enriched (contains a translation/definition)
+                cache[cleanedWord] = enrichedObj;
+                enrichedWordsList.push(enrichedObj);
+            }
+
+            localStorage.setItem('spelling_word_cache', JSON.stringify(cache));
+
+            // Re-sort final list to match original input order
+            const orderedList = [];
+            for (const word of parsedWords) {
+                const cleanedWord = word.toLowerCase();
+                const matched = enrichedWordsList.find(w => w.word.toLowerCase() === cleanedWord);
+                if (matched) {
+                    orderedList.push(matched);
+                } else {
+                    // Safety fallback
+                    orderedList.push({
+                        word: word,
+                        translation: "",
+                        definition: "Pistas no cargadas.",
+                        sentence_blank: `Spell the word: '_____'`,
+                        sentence_full: `Spell the word: '${word}'`
+                    });
+                }
+            }
+
+            state.words = orderedList;
             startPractice();
         } else {
             throw new Error();
         }
-    } catch(e) {
+    } catch (e) {
         console.error("Enrichment API error, running in basic mode.", e);
-        // Basic Fallback if Server fails
-        state.words = parsedWords.map(word => {
+
+        // Basic Fallback for the remaining words that couldn't be loaded
+        const fallbackWords = wordsToFetch.map(word => {
             return {
                 word: word,
                 translation: "",
@@ -658,6 +733,21 @@ async function loadAndEnrichWords() {
                 sentence_full: `Spell the word: '${word}'`
             };
         });
+
+        // Combine cached words and fallbacks
+        const mergedList = [];
+        for (const word of parsedWords) {
+            const cleanedWord = word.toLowerCase();
+            const matchedCache = enrichedWordsList.find(w => w.word.toLowerCase() === cleanedWord);
+            if (matchedCache) {
+                mergedList.push(matchedCache);
+            } else {
+                const matchedFallback = fallbackWords.find(w => w.word.toLowerCase() === cleanedWord);
+                if (matchedFallback) mergedList.push(matchedFallback);
+            }
+        }
+
+        state.words = mergedList;
         startPractice();
     } finally {
         els.btnLoadWords.disabled = false;
