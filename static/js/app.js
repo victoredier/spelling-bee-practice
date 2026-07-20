@@ -5,6 +5,22 @@
 // Default spelling list for 10-year-old
 const DEFAULT_WORD_LIST = "Adventure, Knowledge, Comfortable, Dangerous, Curious, Incredible, Vocabulary, Friendship, Remember, Excellent, Different, Intelligent, Environment, Imagination, Celebration, Responsible, Photographer, Electricity, Encyclopedia, Conversation, Beautifully, Carefully, Education, Information, Delicious, Important, Necessary, Surprised, Suddenly, Tomorrow, Yesterday, Champion, Scientist, Engineer, Discovery, Adventure, Calendar, Geography, Language, Museum, Restaurant, Universe, Butterfly, Basketball, Chocolate, Collection, Direction, Excitement, Fantastic, Generation, Happiness, Instrument, Journalist, Kangaroo, Lightning, Mysterious, Neighborhood, Opportunity, Passenger, Questionnaire, Refrigerator, Strawberry, Temperature, Umbrella, Vegetarian, Watermelon, Xylophone, Youthful, Zoologist, Communication, Motivation, Nutrition, Observation, Population, Questionnaire, Revolution, Scholarship, Transformation, Understanding, Visualization, Wilderness";
 
+// Fisher-Yates array shuffle helper
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+// Generate randomized default word list string
+function getRandomizedDefaultList() {
+    const words = DEFAULT_WORD_LIST.split(',').map(w => w.trim()).filter(w => w.length > 0);
+    return shuffleArray(words).join(', ');
+}
+
 // App State
 let state = {
     words: [],           // Active enriched words
@@ -359,6 +375,7 @@ function setupAccordion(headerEl, contentEl, itemEl) {
 function startPractice() {
     state.currentIndex = 0;
     state.score = 0;
+    state.words = shuffleArray(state.words); // Shuffle words for randomized practice order
 
     els.gameWelcomeState.classList.remove('active');
     els.gameFinishedState.classList.remove('active');
@@ -608,7 +625,7 @@ function initWordInputs() {
     if (savedWords) {
         els.wordListInput.value = savedWords;
     } else {
-        els.wordListInput.value = DEFAULT_WORD_LIST;
+        els.wordListInput.value = getRandomizedDefaultList();
     }
 }
 
@@ -764,8 +781,9 @@ els.btnLoadWords.addEventListener('click', loadAndEnrichWords);
 
 els.btnResetWords.addEventListener('click', () => {
     if (confirm("¿Estás seguro de que quieres restaurar la lista por defecto?")) {
-        els.wordListInput.value = DEFAULT_WORD_LIST;
-        localStorage.setItem('spelling_custom_words', DEFAULT_WORD_LIST);
+        const randomized = getRandomizedDefaultList();
+        els.wordListInput.value = randomized;
+        localStorage.setItem('spelling_custom_words', randomized);
         loadAndEnrichWords();
     }
 });
